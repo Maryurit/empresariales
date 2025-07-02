@@ -6,9 +6,9 @@ const CardList = ({ data }) => {
           <div className="card h-100">
             <img
               src={
-                item.image || // Rick and Morty, Dragon Ball API
+                item.poster || // Rick and Morty, adaptadores
                 item.img || // Dragon Ball API
-                (item.sprites?.front_default) || // PokéAPI
+                item.sprites?.front_default || // PokéAPI
                 (item.poster_path && `https://image.tmdb.org/t/p/w500${item.poster_path}`) || 
                 'https://via.placeholder.com/500x750?text=No+Image'
               }
@@ -17,10 +17,10 @@ const CardList = ({ data }) => {
             />
             <div className="card-body">
               <h5 className="card-title">{item.title || item.name || 'Sin nombre'}</h5>
+              <p className="card-text">
+                {item.species?.name || item.race || item.status || ''}
+              </p>
             </div>
-            <p className="card-text">
-              {item.species?.name || item.race || item.status || ''}
-            </p>
           </div>
         </div>
       ))}
